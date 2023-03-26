@@ -1,0 +1,10 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="row g-3">
+  <div class="col-auto">
+    <input type="text" id="search-input" class="form-control"  placeholder="Termino de busqueda" formControlName="searchTerm">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-color mb-3"><i class="bi bi-search"></i> Buscar</button>
+  </div>
+</form>
+
+<app-image-gallery [pixabayData]="pixabayData"></app-image-gallery>

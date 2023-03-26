@@ -1,0 +1,23 @@
+.navbar-color {
+  background-color: #48A947;
+}
+
+.nav-link {
+  font-size: medium;
+  font-family: 'Poppins 500','Noto Sans Regular','Helvetica Neue', Arial, sans-serif;
+  color: white;
+}
+
+.nav-link:hover {
+  color: #5CB85C;
+  cursor: pointer;
+}
+
+i.bi-search {
+  font-size: 48px;
+  width: 105px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
