@@ -2,3 +2,11 @@
   padding-top: 100px;
   padding-left: 50px;
 }
+
+.btn-color  {
+  background-color: #48A947 !important;
+}
+
+span {
+  margin-left: 5px
+}

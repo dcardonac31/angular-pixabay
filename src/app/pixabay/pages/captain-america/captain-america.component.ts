@@ -25,7 +25,7 @@ export class CaptainAmericaComponent implements OnInit {
       },
       error: (error) => {
         this.pixabayData = [];
-        console.log(error);
+        console.log(error.error);
       }
     })
   }

@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Modal} from 'bootstrap';
+import { ModalComponent } from 'src/app/shared/pages/modal/modal.component';
 import { PixabayData } from '../../interfaces/pixabayResponse';
 import { PixabayService } from '../../service/pixabay.service';
+import { AppSettings } from 'appsettings-json-reader';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+declare var window:any;
 
 @Component({
   selector: 'app-search',
@@ -10,9 +15,10 @@ import { PixabayService } from '../../service/pixabay.service';
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
-  pixabayData: PixabayData[] = []
+  pixabayData: PixabayData[] = [];
+  warningMessage: string = "";
 
-  constructor(private pixabayService: PixabayService, private fb: FormBuilder) {
+  constructor(private pixabayService: PixabayService, private fb: FormBuilder, private elRef: ElementRef) {
     this.searchForm = this.fb.group({
       searchTerm: [""]
     });
@@ -30,11 +36,22 @@ export class SearchComponent implements OnInit {
     this.pixabayService.getAllImages(searchTerm).subscribe({
       next: (response) => {
         this.pixabayData = response.hits;
+        if(this.pixabayData.length == 0){
+          this.warningMessage = AppSettings.readAppSettings().errors.queryNotFound
+          this.showModal()
+        }
       },
       error: (error) => {
         this.pixabayData = [];
-        console.log(error);
+        this.warningMessage = AppSettings.readAppSettings().errors.queryError +" " +error.error
+        this.showModal()
       }
     })
+  }
+
+  showModal() {
+    const modalRef = this.elRef.nativeElement.querySelector('#modalWarning');;
+    const modal=new Modal(modalRef);
+    modal.show();
   }
 }

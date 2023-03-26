@@ -13,10 +13,15 @@
   cursor: pointer;
 }
 
+.nav-icon {
+  width:73px;
+  height:33px;
+}
+
 i.bi-search {
-  font-size: 48px;
-  width: 105px;
-  height: 48px;
+  font-size: 33px;
+  width: 73px;
+  height: 33px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
